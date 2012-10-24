@@ -10,7 +10,10 @@ object $name;format="Camel"$Build extends Build {
       name := "$name$",
       organization := "$organization$",
       version := "$version$",
-      scalaVersion := "$scala_version$"
+      scalaVersion := "$scala_version$",
+      libraryDependencies ++= Seq(
+        "org.scalatest" %% "scalatest" % "$scalatest_version$" % "test"
+        )
       // add other settings here
     )
   )
