@@ -1,10 +1,12 @@
-import com.typesafe.startscript.StartScriptPlugin
-
+import AssemblyKeys._ 
 
 scalariformSettings
 
-scalacOptions += "-deprecation"
+seq(sbtassembly.Plugin.assemblySettings: _*)
 
-scalacOptions += "-unchecked"
-
-seq(StartScriptPlugin.startScriptForClassesSettings: _*)
+mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
+  {
+    case x if x.matches("META-INF/*") => MergeStrategy.first
+    case x => old(x)
+  }
+  }
