@@ -18,6 +18,10 @@ credentials += {
       else throw new RuntimeException("now cred found")
     }
 
+resolvers += "DiversIT repo" at "http://repository-diversit.forge.cloudbees.com/release"
+
+addSbtPlugin("eu.diversit.sbt.plugin" % "webdav4sbt" % "1.3")
+
 addSbtPlugin("com.typesafe.sbt" % "sbt-start-script" % "0.6.0-pityu2.1")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.0.1")

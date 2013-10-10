@@ -1,4 +1,6 @@
 import AssemblyKeys._ 
+import eu.diversit.sbt.plugin.WebDavPlugin._
+
 
 scalariformSettings
 
@@ -10,3 +12,5 @@ mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
     case x => old(x)
   }
   }
+
+seq(WebDav.globalSettings : _*)
