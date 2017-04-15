@@ -1,16 +1,12 @@
-import AssemblyKeys._ 
-import eu.diversit.sbt.plugin.WebDavPlugin._
+lazy val commonSettings = Seq(
+  organization := "$organization$",
+  scalaVersion := "$scala_version$",
+  version      := "$version$"
+) ++ reformatOnCompileSettings
 
-
-scalariformSettings
-
-seq(sbtassembly.Plugin.assemblySettings: _*)
-
-mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
-  {
-    case x if x.matches("META-INF/*") => MergeStrategy.first
-    case x => old(x)
-  }
-  }
-
-seq(WebDav.globalSettings : _*)
+lazy val root = (project in file(".")).
+  settings(commonSettings:_*).
+  settings(
+    name := "$name$",
+    libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "$scalatest_version$" % "test")
+  )
